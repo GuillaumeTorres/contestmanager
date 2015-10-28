@@ -23,8 +23,8 @@
 /vendor/
 
 # Assets and user uploads
-/web/bundles/
-/web/uploads/
+web/
+
 
 # PHPUnit
 /app/phpunit.xml
@@ -35,3 +35,5 @@
 
 # Composer PHAR
 /composer.phar
+
+/npm-debug.log
