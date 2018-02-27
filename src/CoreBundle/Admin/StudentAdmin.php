@@ -74,7 +74,13 @@ class StudentAdmin extends AbstractAdmin
                     'multiple' => false,
                     'required' => false,
                 )
-            );
+            )
+            ->add('role', 'entity', array(
+                    'class' => 'CoreBundle\Entity\Role',
+                    'multiple' => false,
+                    'required' => false,
+                )
+            ); //*
     }
 
     /**
@@ -88,6 +94,7 @@ class StudentAdmin extends AbstractAdmin
             ->add('team')
             ->add('school')
             ->add('level')
+            ->add('role') //*
         ;
     }
 
@@ -100,7 +107,8 @@ class StudentAdmin extends AbstractAdmin
         $listMapper
             ->add('lastName', TextType::class)
             ->add('team')
-            ->add('school');
+            ->add('school')
+            ->add('role');  //*
     }
 
     public function configureActionButtons($action, $object = null)

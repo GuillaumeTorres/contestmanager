@@ -46,6 +46,7 @@ class LoadStudentData extends AbstractFixture implements OrderedFixtureInterface
         $nameList = explode(' ', $lorem);
 
         $teamCpt = 1;
+        $roleCpt = 1;
         for ($i = 1; $i <= 24; $i++) {
             $student = new Student();
             $lastName = $nameList[array_rand($nameList)];
@@ -57,12 +58,17 @@ class LoadStudentData extends AbstractFixture implements OrderedFixtureInterface
             $team = $this->getReference('team'.$teamCpt);
             $student->setTeam($team);
             $student->setSchool($team->getGroup()->getTeacher()->getSchool());
+            $role = $this->getReference('role'.$roleCpt);
+            $student->setRole($role);
 
             $manager->persist($student);
             $this->addReference('student'.$i, $student);
 
             if ($i%2 == 0) {
                 $teamCpt++;
+            }
+            if ($i%2 == 0) {
+                $roleCpt++;
             }
         }
         $manager->flush();
@@ -73,6 +79,6 @@ class LoadStudentData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 4;
+        return 5;
     }
 }

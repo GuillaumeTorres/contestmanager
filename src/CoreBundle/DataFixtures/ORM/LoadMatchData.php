@@ -63,6 +63,6 @@ class LoadMatchData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 6;
+        return 7;
     }
 }

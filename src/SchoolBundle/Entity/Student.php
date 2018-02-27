@@ -57,6 +57,12 @@ class Student
     private $school;
 
     /**
+     * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Role", inversedBy="student")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id", onDelete="set null", nullable=true)
+     */
+    private $role; //*
+
+    /**
      * @return string
      */
     public function __toString()
@@ -184,5 +190,29 @@ class Student
     public function getSchool()
     {
         return $this->school;
+    }
+
+    /**
+     * Set role
+     *
+     * @param \CoreBundle\Entity\Role $role
+     *
+     * @return Student
+     */
+    public function setRole(\CoreBundle\Entity\Role $role = null) //*
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return \CoreBundle\Entity\Role
+     */
+    public function getRole() //*
+    {
+        return $this->role;
     }
 }

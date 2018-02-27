@@ -1,16 +1,16 @@
 <?php
 
-namespace TeamBundle\Entity;
+namespace CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Team
+ * Role
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="TeamBundle\Entity\TeamRepository")
+ * @ORM\Entity
  */
-class Team
+class Role
 {
     /**
      * @var integer
@@ -18,6 +18,8 @@ class Team
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @SuppressWarnings(PHPMD)
      */
     private $id;
 
@@ -29,11 +31,20 @@ class Team
     private $name;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="score", type="integer")
+     * @return string
      */
-    private $score;
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
 
     /**
@@ -47,25 +58,9 @@ class Team
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Team
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
      * @return string
      */
-    public function getName()
+    public function __toString()
     {
         return $this->name;
     }
