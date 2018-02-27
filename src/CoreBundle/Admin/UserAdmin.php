@@ -71,13 +71,7 @@ class UserAdmin extends AbstractAdmin
                     'multiple' => false,
                     'required' => false,
                 )
-            )
-            ->add('role', 'entity', array(
-                    'class' => 'CoreBundle\Entity\Role',
-                    'multiple' => false,
-                    'required' => false,
-                )
-            ); //*
+            );
     }
 
     /**

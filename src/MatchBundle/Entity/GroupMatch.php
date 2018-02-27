@@ -51,6 +51,32 @@ class GroupMatch
     private $team;
 
     /**
+     * @var integer
+     *
+     * @Serializer\MaxDepth(1)
+     *
+     * @ORM\Column(name="level", type="integer", length=1)
+     */
+    private $level;
+
+    /**
+     * @return int
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * @param int $level
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+    }
+
+
+    /**
      * @return string
      */
     public function __toString()

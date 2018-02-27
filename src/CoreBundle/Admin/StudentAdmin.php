@@ -68,7 +68,7 @@ class StudentAdmin extends AbstractAdmin
         $formMapper
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
-            ->add('level', IntegerType::class)
+            //->add('level', IntegerType::class)
             ->add('team', 'entity', array(
                     'class' => 'TeamBundle\Entity\Team',
                     'multiple' => false,
@@ -93,7 +93,7 @@ class StudentAdmin extends AbstractAdmin
             ->add('lastName')
             ->add('team')
             ->add('school')
-            ->add('level')
+            //->add('level')
             ->add('role') //*
         ;
     }

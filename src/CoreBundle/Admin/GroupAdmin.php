@@ -18,6 +18,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use TeamBundle\Entity\Team;
 use UserBundle\Entity\User;
 
@@ -67,7 +68,9 @@ class GroupAdmin extends AbstractAdmin
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $roles = $user->getRoles();
 
-        $formMapper->add('name', TextType::class);
+        $formMapper
+            ->add('name', TextType::class)
+            ->add('level', IntegerType::class);
 
         if (in_array('ROLE_SUPER_ADMIN', $roles)) {
             $formMapper
@@ -88,6 +91,7 @@ class GroupAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('name')
+            ->add('level')
             ->add('teacher');
     }
 

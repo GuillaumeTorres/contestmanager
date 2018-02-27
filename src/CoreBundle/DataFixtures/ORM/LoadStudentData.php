@@ -53,7 +53,7 @@ class LoadStudentData extends AbstractFixture implements OrderedFixtureInterface
             $firstName = $nameList[array_rand($nameList)];
             $student->setFirstName($firstName);
             $student->setLastName($lastName);
-            $student->setLevel(rand(1, 3));
+            //$student->setLevel(rand(1, 3));
             /** @var Team $team */
             $team = $this->getReference('team'.$teamCpt);
             $student->setTeam($team);

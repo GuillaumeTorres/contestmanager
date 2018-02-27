@@ -59,6 +59,7 @@ class AdminGroupControllerTest extends BaseTest
             array(
                 $formId => array(
                   'name' => 'lorem ipsum',
+                  'level' => 3,
                   'teacher' => $teacher->getId(),
                 ),
             )

@@ -52,6 +52,7 @@ class BaseTest extends WebTestCase
           'CoreBundle\DataFixtures\ORM\LoadUserData',
           'CoreBundle\DataFixtures\ORM\LoadGroupData',
           'CoreBundle\DataFixtures\ORM\LoadTeamData',
+          'CoreBundle\DataFixtures\ORM\LoadRoleData',
           'CoreBundle\DataFixtures\ORM\LoadStudentData',
           'CoreBundle\DataFixtures\ORM\LoadTournamentData',
           'CoreBundle\DataFixtures\ORM\LoadConfigData',

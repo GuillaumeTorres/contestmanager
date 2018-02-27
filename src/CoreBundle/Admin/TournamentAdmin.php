@@ -24,6 +24,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use MatchBundle\Helper\TournamentManager;
 
 /**
@@ -71,7 +72,9 @@ class TournamentAdmin extends AbstractAdmin
                         'Pm' => $this->trans('Afternoon'),
                     ),
                 ))
-                ->add('date', DateTimeType::class)
+                ->add('date', DateType::class, array(
+                    'widget' => 'choice',
+                ))
             ->end();
         for ($i = 1; $i <= $this->getRoomNumber(); $i++) {
             $formMapper

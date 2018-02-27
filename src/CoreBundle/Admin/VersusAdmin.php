@@ -20,6 +20,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 /**
@@ -72,7 +73,9 @@ class VersusAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('dateMatch', DateTimeType::class)
+            ->add('dateMatch', DateType::class, array(
+                'widget' => 'choice',
+            ))
             ->add('tableNumber', NumberType::class)
             ->add('team1', 'entity', array(
                     'class' => 'TeamBundle\Entity\Team',

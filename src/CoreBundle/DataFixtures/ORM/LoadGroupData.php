@@ -50,6 +50,7 @@ class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
             $group = New GroupMatch();
             $groupName = $nameList[array_rand($nameList)];
             $group->setName($groupName);
+            $group->setLevel(rand(1, 3));
             $group->setTeacher($this->getReference('teacher'.$teacherCpt));
 
             $manager->persist($group);

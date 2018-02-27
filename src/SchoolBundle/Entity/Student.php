@@ -42,7 +42,7 @@ class Student
      *
      * @ORM\Column(name="level", type="integer", length=1)
      */
-    private $level;
+    //private $level;
 
     /**
      * @ORM\ManyToOne(targetEntity="TeamBundle\Entity\Team", inversedBy="student")
@@ -131,18 +131,18 @@ class Student
     /**
      * @return mixed
      */
-    public function getLevel()
+    /*public function getLevel()
     {
         return $this->level;
-    }
+    }*/
 
     /**
      * @param mixed $level
      */
-    public function setLevel($level)
+    /*public function setLevel($level)
     {
         $this->level = $level;
-    }
+    }*/
 
     /**
      * Set team
