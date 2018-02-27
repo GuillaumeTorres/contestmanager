@@ -95,4 +95,5 @@ class Config
     {
         return $this->name;
     }
+
 }
