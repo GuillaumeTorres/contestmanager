@@ -71,11 +71,11 @@ class AdminTournamentControllerTest extends BaseTest
                 $formId => array(
                   'name' => 'lorem ipsum',
                   'halfDay' => 'Am',
-                  'date' => ['date' => [
+                  'date' => [/*'date' => [*/
                       'day' => 23,
                       'month' => 9,
                       'year' => 2017
-                  ]],
+                  /*]*/],
                 ),
             )
         );

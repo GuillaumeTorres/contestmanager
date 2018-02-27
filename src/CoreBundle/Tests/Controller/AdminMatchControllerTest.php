@@ -58,15 +58,15 @@ class AdminMatchControllerTest extends BaseTest
             array(
                 $formId => array(
                   'dateMatch' => [
-                    'date' => [
+                    /*'date' => [*/
                         'day' => 23,
                         'month' => 9,
                         'year' => 2017
-                    ],
+                    /*],
                     'time' => [
                         'hour' => 23,
                         'minute' => 23
-                    ]
+                    ]*/
                   ],
                   'tableNumber' => 23,
                   'team1' => 1,
@@ -77,7 +77,8 @@ class AdminMatchControllerTest extends BaseTest
         $this->client->submit($form);
         $crawler = $this->client->followRedirect();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertContains('L\'élément "Match 2017-09-23 23:23:00" a été créé avec succès.', $crawler->filter('div.alert-success')->text());
+        $this->assertContains('L\'élément "Match 2017-09-23" a été créé avec succès.', $crawler->filter('div.alert-success')->text());
+        /* 23:23:00*/
     }
 
     /**
@@ -104,7 +105,7 @@ class AdminMatchControllerTest extends BaseTest
         $this->client->submit($form);
         $crawler = $this->client->followRedirect();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertContains('L\'élément "Match '.$match->getDateMatch()->format('Y-m-d H:i:s').'" a été mis à jour avec succès.', $crawler->filter('div.alert-success')->text());
+        $this->assertContains('L\'élément "Match '.$match->getDateMatch()->format('Y-m-d').'" a été mis à jour avec succès.', $crawler->filter('div.alert-success')->text());
     }
 
     /**
@@ -122,12 +123,12 @@ class AdminMatchControllerTest extends BaseTest
             ['id' => $match->getId()]
         ));
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertContains('Êtes-vous sûr de vouloir supprimer l\'élément "Match '.$match->getDateMatch()->format('Y-m-d H:i:s').'" sélectionné?', $crawler->filter('div.box-body')->text());
+        $this->assertContains('Êtes-vous sûr de vouloir supprimer l\'élément "Match '.$match->getDateMatch()->format('Y-m-d').'" sélectionné?', $crawler->filter('div.box-body')->text());
 
         $form = $crawler->filter('button:contains("supprimer")')->eq(0)->form();
         $this->client->submit($form);
         $crawler = $this->client->followRedirect();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertContains('L\'élément "Match '.$match->getDateMatch()->format('Y-m-d H:i:s').'" a été supprimé avec succès.', $crawler->filter('div.alert-success')->text());
+        $this->assertContains('L\'élément "Match '.$match->getDateMatch()->format('Y-m-d').'" a été supprimé avec succès.', $crawler->filter('div.alert-success')->text());
     }
 }

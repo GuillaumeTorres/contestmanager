@@ -44,7 +44,7 @@ class VersusAdmin extends AbstractAdmin
      */
     public function toString($object)
     {
-        return 'Match '.$object->getDateMatch()->format('Y-m-d H:i:s');
+        return 'Match '.$object->getDateMatch()->format('Y-m-d');
     }
 
     /**
