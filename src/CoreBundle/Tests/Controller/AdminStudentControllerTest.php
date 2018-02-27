@@ -60,6 +60,7 @@ class AdminStudentControllerTest extends BaseTest
                 $formId => array(
                   'firstName' => 'John',
                   'lastName' => 'Smith',
+                  'level' => 3,
                   'team' => $team->getId(),
                 ),
             )
