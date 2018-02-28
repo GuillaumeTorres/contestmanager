@@ -38,13 +38,6 @@ class Student
     private $lastName;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="level", type="integer", length=1)
-     */
-    //private $level;
-
-    /**
      * @ORM\ManyToOne(targetEntity="TeamBundle\Entity\Team", inversedBy="student")
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id", onDelete="set null", nullable=true)
      */
@@ -60,7 +53,7 @@ class Student
      * @ORM\ManyToOne(targetEntity="CoreBundle\Entity\Role", inversedBy="student")
      * @ORM\JoinColumn(name="role_id", referencedColumnName="id", onDelete="set null", nullable=true)
      */
-    private $role; //*
+    private $role;
 
     /**
      * @return string
@@ -127,22 +120,6 @@ class Student
     {
         return $this->lastName;
     }
-
-    /**
-     * @return mixed
-     */
-    /*public function getLevel()
-    {
-        return $this->level;
-    }*/
-
-    /**
-     * @param mixed $level
-     */
-    /*public function setLevel($level)
-    {
-        $this->level = $level;
-    }*/
 
     /**
      * Set team

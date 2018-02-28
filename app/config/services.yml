@@ -62,3 +62,9 @@ services:
             - "@service_container"
         tags:
             - { name: sonata.block }
+    app.excel.parser:
+        class:  CoreBundle\Service\ExcelParserService
+        arguments:
+            entityManager: "@doctrine.orm.entity_manager"
+            phpExcel: "@phpexcel"
+            hostMail: "%mail_host%"

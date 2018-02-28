@@ -47,7 +47,7 @@ class RestController extends Controller
      * }
      * )
      */
-    public function groupsMatchsAction()
+    public function groupsAction()
     {
         $entityManager = $this->getDoctrine()->getManager();
         $groups = $entityManager->getRepository('MatchBundle:GroupMatch')->findAll();
@@ -56,9 +56,9 @@ class RestController extends Controller
             return new JsonResponse('matchs not found', 404);
         }
         //$groups = $groups[0]->__unset('team');
-        foreach ($groups as $group){
-            $group = $group->__unset('team');
-        }
+//        foreach ($groups as $group){
+//            $group->__unset('team');
+//        }
 
         return $groups;
     }
@@ -101,7 +101,7 @@ class RestController extends Controller
      * }
      * )
     */
-    public function getGroupMatchAction($idGroup)
+    public function getGroupAction($idGroup)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $matchs = $entityManager->getRepository('MatchBundle:GroupMatch')->findBy(array('id' => $idGroup));
