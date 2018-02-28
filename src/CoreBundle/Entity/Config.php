@@ -44,6 +44,54 @@ class Config
      */
     private $level_max;
 
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="time_interval", type="integer", nullable=true)
+     */
+    //private $time_interval;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="start_time", type="integer", nullable=true)
+     */
+    //private $start_time;
+
+    /**
+     * @return int
+     */
+    /*public function getStartTime()
+    {
+        return $this->start_time;
+    }*/
+
+    /**
+     * @param int $start_time
+     */
+    /*public function setStartTime($start_time)
+    {
+        $this->start_time = $start_time;
+    }*/
+
+    /**
+     * @return int
+     */
+    /*public function getTimeInterval()
+    {
+        return $this->time_interval;
+    }*/
+
+    /**
+     * @param int $time_interval
+     */
+    /*public function setTimeInterval($time_interval)
+    {
+        $this->time_interval = $time_interval;
+    }*/
+
     /**
      * @return int
      */

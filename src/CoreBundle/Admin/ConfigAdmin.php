@@ -54,7 +54,9 @@ class ConfigAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('roomNumber', NumberType::class)
-            ->add('level_max', NumberType::class);
+            ->add('level_max', NumberType::class)
+            /*->add('time_interval', NumberType::class)
+            ->add('start_time', NumberType::class)*/;
 
     }
 
@@ -66,7 +68,9 @@ class ConfigAdmin extends AbstractAdmin
         $listMapper->addIdentifier('name');
         $listMapper
             ->add('roomNumber', NumberType::class)
-            ->add('level_max', NumberType::class);
+            ->add('level_max', NumberType::class)
+            /*->add('time_interval', NumberType::class)
+            ->add('start_time', NumberType::class)*/;
     }
 
     /**

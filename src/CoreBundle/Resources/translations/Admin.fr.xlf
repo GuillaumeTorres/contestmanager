@@ -138,7 +138,7 @@
             </trans-unit>
             <trans-unit id="group.level">
                 <source>Level</source>
-                <target>Niveau</target>
+                <target>Cycle</target>
             </trans-unit>
 
             <trans-unit id="dashboard.match">
@@ -196,9 +196,16 @@
             </trans-unit>
             <trans-unit id="config.levelmax">
                 <source>Level Max</source>
-                <target>Niveau Seuil</target>
+                <target>Cycle Seuil</target>
             </trans-unit>
-
+            <trans-unit id="config.timeinterval">
+                <source>Time Interval</source>
+                <target>Interval de Temps</target>
+            </trans-unit>
+            <trans-unit id="config.starttime">
+                <source>Hour to start</source>
+                <target>Heure de début</target>
+            </trans-unit>
             <trans-unit id="dashboard.tournament">
                 <source>Tournament</source>
                 <target>Tournoi</target>
