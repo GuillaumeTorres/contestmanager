@@ -110,7 +110,6 @@ sonata_admin:
                 roles: [ ROLE_SUPER_ADMIN ]
                 items:
                     - admin.school
-                    - admin.config
                     - admin.user
                     - admin.tournament
             app.teacher:

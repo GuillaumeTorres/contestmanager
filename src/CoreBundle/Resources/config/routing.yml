@@ -18,3 +18,7 @@ app_download:
 import:
     path:     /import
     defaults: { _controller: CoreBundle:Default:import }
+
+config:
+    path:     /config
+    defaults: { _controller: CoreBundle:Default:config }

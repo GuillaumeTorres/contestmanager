@@ -150,4 +150,18 @@ class DefaultController extends Controller
         preg_match('/(.*)\/(.*)\/list/', $url, $match);
         $entityType = end($match);
     }
+
+    /**
+     * Config action
+     *
+     * @return Response
+     */
+    public function configAction()
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $config = $entityManager->getRepository('CoreBundle:Config')->findOneBy(array('id' => 1));
+
+        if (empty($config)) return $this->render('CoreBundle:Admin:standard_layout.html.twig', array('error' => 'Cette config n\'existe pas', 'config' => 'nop'));
+        return new RedirectResponse('/config/'.$config->getId().'/edit');//$this->render('CoreBundle:Admin:standard_layout.html.twig', array('config' => $config));
+    }
 }
