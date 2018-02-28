@@ -27,3 +27,4 @@ parameters:
         - 14:40
 
     final_hour_start: 11:00
+    mail_host: 'ac-versailles.fr'
