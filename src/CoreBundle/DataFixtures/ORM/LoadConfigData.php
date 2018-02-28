@@ -41,6 +41,8 @@ class LoadConfigData extends AbstractFixture
         $config->setName('Configuration');
         $config->setRoomNumber(2);
         $config->setLevelMax(9);
+        //$config->setTimeInterval(10);
+        //$config->setStartTime(9);
 
         $manager->persist($config);
         $this->addReference('config', $config);

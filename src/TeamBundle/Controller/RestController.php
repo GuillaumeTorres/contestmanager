@@ -50,4 +50,36 @@ class RestController extends Controller
         return $team;
     }
 
+
+    /**
+     * @Rest\Get("/groups/{$idTeam}", requirements={"$idTeam" = "\d+"})
+     * @ApiDoc(
+     * section="Teams",
+     * description= "Get group of a team",
+     * requirements={
+     *      {
+     *          "name"="idTeam",
+     *          "dataType"="integer",
+     *          "requirement"="\d+",
+     *          "description"="Id Team"
+     *      }
+     *  },
+     * statusCodes={
+     *      200="Returned when successful",
+     *      404="Returned when the team are not found"
+     * }
+     * )
+     */
+    public function getGroupByTeamAction($idTeam)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $teams = $entityManager->getRepository('TeamBundle:Team')->findOneBy(array('id' => $idTeam));
+        if( empty($teams) ){
+            return new JsonResponse('team not found', 404);
+        }
+        return $teams->getGroup();
+    }
+
+
+
 }
