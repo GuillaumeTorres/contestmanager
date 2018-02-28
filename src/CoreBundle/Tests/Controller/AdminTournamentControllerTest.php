@@ -71,11 +71,11 @@ class AdminTournamentControllerTest extends BaseTest
                 $formId => array(
                   'name' => 'lorem ipsum',
                   'halfDay' => 'Am',
-                  'date' => [/*'date' => [*/
+                  'date' => array(/*'date' => [*/
                       'day' => 23,
                       'month' => 9,
                       'year' => 2017
-                  /*]*/],
+                  /*]*/),
                 ),
             )
         );
@@ -124,7 +124,7 @@ class AdminTournamentControllerTest extends BaseTest
 
         $crawler = $this->client->request('GET', $this->getRouter()->generate(
             'admin_match_groupmatch_delete',
-            ['id' => $group->getId()]
+            array('id' => $group->getId())
         ));
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertContains('Êtes-vous sûr de vouloir supprimer l\'élément "'.$group->getName().'" sélectionné?', $crawler->filter('div.box-body')->text());

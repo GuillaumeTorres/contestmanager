@@ -38,6 +38,29 @@ class Config
     private $roomNumber;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="level_max", type="integer", nullable=true)
+     */
+    private $level_max;
+
+    /**
+     * @return int
+     */
+    public function getLevelMax()
+    {
+        return $this->level_max;
+    }
+
+    /**
+     * @param int $level_max
+     */
+    public function setLevelMax($level_max)
+    {
+        $this->level_max = $level_max;
+    }
+
+    /**
      * Get id
      *
      * @return integer

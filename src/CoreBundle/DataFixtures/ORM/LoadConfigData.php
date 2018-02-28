@@ -40,8 +40,10 @@ class LoadConfigData extends AbstractFixture
         $config = new Config();
         $config->setName('Configuration');
         $config->setRoomNumber(2);
+        $config->setLevelMax(9);
 
         $manager->persist($config);
+        $this->addReference('config', $config);
         $manager->flush();
     }
 }

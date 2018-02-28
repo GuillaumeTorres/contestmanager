@@ -12,6 +12,7 @@
  */
 namespace CoreBundle\Admin;
 
+use CoreBundle\Entity\Config;
 use MatchBundle\Entity\GroupMatch;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -67,10 +68,17 @@ class GroupAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $roles = $user->getRoles();
+        $entityManager = $this->getConfigurationPool()->getContainer()->get('doctrine')->getManager();
+        $config = $entityManager->getRepository('CoreBundle:Config')->findOneBy(array());
 
         $formMapper
             ->add('name', TextType::class)
-            ->add('level', IntegerType::class);
+            ->add('level', IntegerType::class, array(
+                'attr' => array(
+                    'min' => 1,
+                    'max' => $config->getLevelMax(),
+                )
+            ));
 
         if (in_array('ROLE_SUPER_ADMIN', $roles)) {
             $formMapper

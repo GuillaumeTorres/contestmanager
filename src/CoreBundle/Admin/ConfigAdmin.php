@@ -52,7 +52,10 @@ class ConfigAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->add('roomNumber', NumberType::class);
+        $formMapper
+            ->add('roomNumber', NumberType::class)
+            ->add('level_max', NumberType::class);
+
     }
 
     /**
@@ -61,7 +64,9 @@ class ConfigAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper->addIdentifier('name');
-        $listMapper->add('roomNumber', NumberType::class);
+        $listMapper
+            ->add('roomNumber', NumberType::class)
+            ->add('level_max', NumberType::class);
     }
 
     /**

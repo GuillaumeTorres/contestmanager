@@ -12,6 +12,7 @@
  */
 namespace CoreBundle\DataFixtures\ORM;
 
+use CoreBundle\Entity\Config;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -48,9 +49,11 @@ class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
         $teacherCpt = 0;
         for ($i = 1; $i <= 4; $i++) {
             $group = New GroupMatch();
+            $config = New Config();
+            $config = $this->getReference('config');
             $groupName = $nameList[array_rand($nameList)];
             $group->setName($groupName);
-            $group->setLevel(rand(1, 3));
+            $group->setLevel(rand(1, $config->getLevelMax()));
             $group->setTeacher($this->getReference('teacher'.$teacherCpt));
 
             $manager->persist($group);
