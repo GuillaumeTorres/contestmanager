@@ -98,6 +98,10 @@
                 <source>Student List</source>
                 <target>Liste des élèves</target>
             </trans-unit>
+            <trans-unit id="student.role">
+                <source>Role</source>
+                <target>Rôle</target>
+            </trans-unit>
             <trans-unit id="student.add">
                 <source>Student Create</source>
                 <target>Créer un élève</target>
@@ -131,6 +135,10 @@
             <trans-unit id="group.teacher">
                 <source>Teacher</source>
                 <target>Enseignant</target>
+            </trans-unit>
+            <trans-unit id="group.level">
+                <source>Level</source>
+                <target>Niveau</target>
             </trans-unit>
 
             <trans-unit id="dashboard.match">
@@ -185,6 +193,10 @@
             <trans-unit id="config.roomnumber">
                 <source>Room Number</source>
                 <target>Nombre de salle</target>
+            </trans-unit>
+            <trans-unit id="config.levelmax">
+                <source>Level Max</source>
+                <target>Niveau Seuil</target>
             </trans-unit>
 
             <trans-unit id="dashboard.tournament">
