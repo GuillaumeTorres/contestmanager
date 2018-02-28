@@ -62,8 +62,12 @@ class TournamentBlock extends BaseBlockService
     {
         /** @var FormFactory $formFactory */
         $formFactory = $this->container->get('form.factory');
-        $form = $formFactory->create('MatchBundle\Form\TournamentType');
+        $tournamentForm = $formFactory->create('MatchBundle\Form\TournamentType');
+        $importForm = $formFactory->create('CoreBundle\Form\ImportType');
 
-        return $this->renderResponse('CoreBundle:Block:tournament_block.html.twig', array('form' => $form->createView()));
+        return $this->renderResponse('CoreBundle:Block:tournament_block.html.twig', array(
+            'tournament_form' => $tournamentForm->createView(),
+            'import_form'     => $importForm->createView(),
+        ));
     }
 }

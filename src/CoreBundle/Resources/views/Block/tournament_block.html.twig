@@ -10,9 +10,20 @@
         </div>
         <div class="box-body">
             <form method="post" action="{{ path('tournament') }}">
-                {{ form_widget(form) }}
-                <input type="submit" name="score" class="btn btn-primary" value="clique">
+                {{ form_widget(tournament_form) }}
             </form>
+        </div>
+        <div class="box-header">
+            <h3 class="box-title">{{ "dashboard.import"|trans({}, 'Admin') }}</h3>
+        </div>
+        <div class="box-body">
+            {% if import_form is defined %}
+                <form action="{{ path('import') }}" method="post" {{ form_enctype(import_form) }}>
+                    {{ form_widget(import_form) }}
+
+                    <button type="submit" class="btn btn-primary">{{ "Upload file"|trans({}, 'Admin') }}</button>
+                </form>
+            {% endif %}
         </div>
     </div>
 {% endspaceless %}

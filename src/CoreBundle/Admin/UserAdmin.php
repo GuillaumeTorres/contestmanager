@@ -93,15 +93,4 @@ class UserAdmin extends AbstractAdmin
             ->add('firstName')
             ->add('lastName');
     }
-
-    public function configureActionButtons($action, $object = null)
-    {
-        $list = parent::configureActionButtons($action, $object);
-
-        $list['import'] = array(
-            'template' =>  'CoreBundle:Admin:import_button.html.twig',
-        );
-
-        return $list;
-    }
 }

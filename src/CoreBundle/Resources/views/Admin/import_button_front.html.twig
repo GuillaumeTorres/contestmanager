@@ -1,7 +1,0 @@
-{% if form is defined %}
-    <form action="{{ path('import') }}" method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-
-        <input type="submit" />
-    </form>
-{% endif %}

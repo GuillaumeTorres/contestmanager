@@ -129,26 +129,14 @@ class DefaultController extends Controller
      */
     public function importAction(Request $request)
     {
-        $form = $this->createFormBuilder()
-            ->add('test', FileType::class, array(
-                'required' => false,
-                'label' => 'File to import'
-            ))
-            ->getForm();
-
-        if ($request->getMethod() == 'GET') {
-            return $this->render('CoreBundle:Admin:import_button_front.html.twig', array('form' => $form->createView()));
-        }
-
         foreach ($request->files as $uploadedFiles) {
             /** @var UploadedFile $uploadedFile */
             foreach ($uploadedFiles as $uploadedFile) {
-                $phpExcelObject = $this->get('phpexcel')->createPHPExcelObject($uploadedFile->getPathname());
+                $this->get('app.excel.parser')->parseExcelFile($uploadedFile->getPathname());
             }
         }
-        $url = $request->headers->get('referer');
-        preg_match('/(.*)\/(.*)\/list/', $url, $match);
-        $entityType = end($match);
+
+        return $this->redirectToRoute('sonata_admin_dashboard');
     }
 
     /**

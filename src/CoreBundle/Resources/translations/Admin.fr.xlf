@@ -246,6 +246,19 @@
                 <source>Afternoon</source>
                 <target>Après-midi</target>
             </trans-unit>
+
+            <trans-unit id="dashboard.import">
+                <source>dashboard.import</source>
+                <target>Importer fichier Excel</target>
+            </trans-unit>
+            <trans-unit id="import.file">
+                <source>Upload file</source>
+                <target>Importer</target>
+            </trans-unit>
+            <trans-unit id="import.label">
+                <source>File to upload</source>
+                <target>Fichier à importer</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
