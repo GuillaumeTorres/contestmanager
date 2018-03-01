@@ -5,6 +5,9 @@
 [![Issue Count](https://codeclimate.com/github/GuillaumeTorres/contestmanager/badges/issue_count.svg)](https://codeclimate.com/github/GuillaumeTorres/contestmanager)
 [![Test Coverage](https://codeclimate.com/github/GuillaumeTorres/contestmanager/badges/coverage.svg)](https://codeclimate.com/github/GuillaumeTorres/contestmanager/coverage)
 
+[![Build Status](http://192.168.0.23:8080/job/Contest%20Manager/badge/icon)](http://192.168.0.23:8080/job/Contest%20Manager/)
+[![Build Status](http://192.168.0.23:8080/buildStatus/icon?job=Contest Manager)](http://192.168.0.23:8080/job/Contest%20Manager/)
+
 ### Github app ###
  
 ```
@@ -24,48 +27,34 @@ php app/console assets:install
 
 ```
 php app/console doctrine:database:drop --force
+php app/console server:run
 php app/console doctrine:fixtures:load --no-interaction
 php app/console cache:clear [--env=prod]
 ```
+
+### Json Web Token ###
+
+Générer les clés ssh
+```
+mkdir -p var/jwt
+openssl genrsa -out var/jwt/private.pem -aes256 4096
+openssl rsa -pubout -in var/jwt/private.pem -out var/jwt/public.pem
+```
+Penser à changer 'jwt_key_pass_phrase' dans les paramètres
 
 ### Configuration host
 
 ```
  <VirtualHost *:80>
-    ServerName contestmanager.dev
-    DocumentRoot C:\wamp\www\contestmanager\web
-    SetEnv APPLICATION_ENV "development"
-    <Directory C:\wamp\www\contestmanager\web>
-        DirectoryIndex app_dev.php
-        Options Indexes FollowSymLinks Includes ExecCGI
-        AllowOverride All
-        Order allow,deny
-        Allow from all
-    </Directory>
-</VirtualHost>
-```
-
-### .htaccess
-
-Changer app_dev.php par app.php pour passer en production
-```
-DirectoryIndex app_dev.php
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-
-    RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
-    RewriteRule ^(.*) - [E=BASE:%1]
-
-    RewriteCond %{ENV:REDIRECT_STATUS} ^$
-    RewriteRule ^app\.php(/(.*)|$) %{ENV:BASE}/$2 [R=301,L]
-    RewriteCond %{REQUEST_FILENAME} -f
-    RewriteRule .? - [L]
-
-    RewriteRule .? %{ENV:BASE}/app_dev.php [L]
-</IfModule>
-<IfModule !mod_rewrite.c>
-    <IfModule mod_alias.c>
-        RedirectMatch 302 ^/$ /app_dev.php/
-    </IfModule>
-</IfModule>
+     ServerName contestmanager.local
+     DocumentRoot /var/www/projects/contestmanager/web
+     SetEnv APPLICATION_ENV "development"
+     <Directory /var/www/projects/contestmanager/web>
+         DirectoryIndex app_dev.php
+         Options Indexes FollowSymLinks Includes ExecCGI
+         AllowOverride All
+         Order allow,deny
+         Allow from all
+     </Directory>
+ </VirtualHost>
 ```
