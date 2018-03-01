@@ -68,6 +68,9 @@ class User extends BaseUser implements \JsonSerializable
         $this->group = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     * @return array
+     */
     public function jsonSerialize()
     {
         return [

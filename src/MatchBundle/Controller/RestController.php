@@ -2,7 +2,9 @@
 
 namespace MatchBundle\Controller;
 
+use Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\AuthorizationHeaderTokenExtractor;
 use MatchBundle\Entity\Tournament;
+use MatchBundle\Entity\Versus;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use JMS\Serializer\SerializationContext;
@@ -15,6 +17,8 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use MatchBundle\Entity\Score;
 use MatchBundle\Helper\TournamentManager;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\PreAuthenticationJWTUserToken;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class RestController extends Controller
 {
@@ -188,9 +192,15 @@ class RestController extends Controller
      *      404="Returned when match/team not found"
      * }
      * )
+     *
+     * @return JsonResponse
     */
     public function scoreTeamMatchAction(Request $request)
     {
+        if (!$this->get('app.jwt.authentication')->getUser($request)) {
+            return new JsonResponse('Unauthorized', 401);
+        }
+
         $idTeam = $request->get('id_team');
         $idMatch = $request->get('id_match');
         $scoreV = $request->get('score');
@@ -202,6 +212,7 @@ class RestController extends Controller
         }
         $entityManager = $this->getDoctrine()->getManager();
 
+        /** @var Score $score */
         $score = $entityManager->getRepository('MatchBundle:Score')->findOneBy(array('team' => $idTeam, 'versus' => $idMatch));
         $score->setScore($scoreV);
         $entityManager->persist($score);
@@ -218,6 +229,7 @@ class RestController extends Controller
             $team->setBestScore($scoreV);
             $entityManager->persist($team);
         }
+        /** @var Versus $match */
         $match = $entityManager->getRepository('MatchBundle:Versus')->findOneBy(array('id' => $idMatch));
         if ($allFinish) $match->setFinished(true);
         $entityManager->persist($match);
@@ -227,7 +239,7 @@ class RestController extends Controller
         }
         $entityManager->flush();
 
-        return new JsonResponse('Success', 200); 
+        return new JsonResponse($match->jsonSerialize(), 200);
     }
 
     /**

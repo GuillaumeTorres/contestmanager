@@ -14,7 +14,7 @@ use JMS\Serializer\Annotation\MaxDepth;
  * @ORM\Entity(repositoryClass="MatchBundle\Entity\VersusRepository")
  * @ExclusionPolicy("all")
  */
-class Versus
+class Versus implements \JsonSerializable
 {
     /**
      * @var integer
@@ -87,6 +87,19 @@ class Versus
      * @MaxDepth(1)
      */
     private $tournament;
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'date' => $this->getDateMatch(),
+            'table' => $this->getTableNumber(),
+            'score' => $this->getScore(),
+        ];
+    }
 
     /**
      * Get id
