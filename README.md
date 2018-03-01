@@ -5,8 +5,8 @@
 [![Issue Count](https://codeclimate.com/github/GuillaumeTorres/contestmanager/badges/issue_count.svg)](https://codeclimate.com/github/GuillaumeTorres/contestmanager)
 [![Test Coverage](https://codeclimate.com/github/GuillaumeTorres/contestmanager/badges/coverage.svg)](https://codeclimate.com/github/GuillaumeTorres/contestmanager/coverage)
 
-[![Build Status](http://192.168.0.23:8080/job/Contest%20Manager/badge/icon)](http://192.168.0.23:8080/job/Contest%20Manager/)
-[![Build Status](http://192.168.0.23:8080/buildStatus/icon?job=Contest Manager)](http://192.168.0.23:8080/job/Contest%20Manager/)
+[![Build Status](http://contestmanager.ddns.net:8080/job/Contest%20Manager/badge/icon)](http://contestmanager.ddns.net:8080/job/Contest%20Manager/)
+[![Build Status](http://contestmanager.ddns.net:8080/buildStatus/icon?job=Contest Manager)](http://contestmanager.ddns.net:8080/job/Contest%20Manager/)
 
 ### Github app ###
  
