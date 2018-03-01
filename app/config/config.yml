@@ -8,6 +8,25 @@ imports:
 parameters:
     locale: fr
 
+lexik_jwt_authentication:
+    private_key_path: '%jwt_private_key_path%'
+    public_key_path:  '%jwt_public_key_path%'
+    pass_phrase:      '%jwt_key_pass_phrase%'
+    token_ttl:        '%jwt_token_ttl%'
+
+nelmio_cors:
+    defaults:
+        origin_regex: true
+        allow_origin: ['^http://localhost:[0-9]+']
+        allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
+        allow_headers: ['Content-Type', 'Authorization']
+        max_age: 3600
+        expose_headers: ['Authorization']
+    paths:
+        '^/': ~
+        '^/api/':
+            allow_origin: ['*']
+
 framework:
     #esi:            ~
     translator: { fallbacks: [fr] }

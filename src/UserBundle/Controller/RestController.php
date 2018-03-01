@@ -2,6 +2,7 @@
 
 namespace UserBundle\Controller;
 
+use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\PreAuthenticationJWTUserToken;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -34,10 +35,13 @@ class RestController extends Controller
     }
     
     /**
-     * @Rest\Post("/user/login", name="_login")
+     * @Rest\Post("/arbiter/login", name="_login")
+     *
+     * @param Request $request
+     *
      * @ApiDoc(
      * section="Users",
-     * description= "User login",
+     * description= "Arbiter login",
      * parameters={
      *      {"name"="username", "dataType"="string", "required"=true, },
      *      {"name"="password", "dataType"="string", "required"=true, }
@@ -47,18 +51,25 @@ class RestController extends Controller
      *      401="Returned when invalid username/password"
      * }
      * )
+     *
+     * @return JsonResponse
     */
-    public function loginAction(Request $request){
+    public function arbiterLoginAction(Request $request)
+    {
         $username = $request->get('username');
         $password = $request->get('password');
-        
+
         $user = $this->get('fos_user.user_manager')->findUserBy(array('username' => $username));
         $encoder = $this->get('security.encoder_factory')->getEncoder($user);
         if (!$user || !$encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt())) {
             return new JsonResponse('Invalid username/password', 401);
         }
-        
-        return $user;
+
+        $token = $this->get('lexik_jwt_authentication.encoder')->encode([
+            'username' => $user->getUsername(),
+        ]);
+
+        return new JsonResponse($user->jsonSerialize(), 200, ['Authorization' => 'Bearer '.$token]);
     }
     
     /**

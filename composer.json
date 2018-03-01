@@ -24,7 +24,9 @@
         "nelmio/api-doc-bundle": "^2.12",
         "sonata-project/admin-bundle": "^3.8",
         "sonata-project/doctrine-orm-admin-bundle": "^3.1",
-        "liuggio/excelbundle": "^2.1"
+        "liuggio/excelbundle": "^2.1",
+        "lexik/jwt-authentication-bundle": "^2.4",
+        "nelmio/cors-bundle": "^1.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

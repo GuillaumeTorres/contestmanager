@@ -31,6 +31,8 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
+            new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -20,7 +20,7 @@ use TeamBundle\Entity\Team;
  *          )
  *     })
  */
-class User extends BaseUser
+class User extends BaseUser implements \JsonSerializable
 {
     /**
      * @ORM\Id
@@ -66,6 +66,16 @@ class User extends BaseUser
         parent::__construct();
         $this->salt = null;
         $this->group = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'username' => $this->getUsername(),
+            'email' => $this->getEmail(),
+            'roles' => $this->getRoles(),
+        ];
     }
 
     /**

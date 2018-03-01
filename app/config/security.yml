@@ -30,20 +30,21 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        login:
+            pattern:  ^/api/arbiter/login
+            stateless: true
+            anonymous: true
+            form_login:
+                check_path:               /api/arbiter/login_check
+                success_handler:          lexik_jwt_authentication.handler.authentication_success
+                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
+                require_previous_session: false
 
-        main:
-            anonymous: ~
-            # activate different ways to authenticate
-
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/app_download, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/matchs/team/score, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/*, role: ROLE_ADMIN }

@@ -48,6 +48,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $this->addReference('admin', $admin);
 
         $this->setTeacher();
+        $this->setArbiter();
     }
 
     /**
@@ -91,6 +92,28 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     }
 
     /**
+     * Create arb3iter
+     *
+     * @return User
+     */
+    private function setArbiter()
+    {
+        /** @var User $user */
+        $user = $this->userManager->createUser();
+        $user->setFirstName('John');
+        $user->setLastName('Doe');
+        $user->setUsername('arbiter');
+        $user->setEmail('arbiter@gmail.com');
+        $user->setPlainPassword('arbiter');
+        $user->setEnabled(true);
+        $user->setLocked(false);
+        $user->setRoles(array('ROLE_USER'));
+        $this->userManager->updateUser($user, true);
+
+        return $user;
+    }
+
+    /**
      * Create admin user
      *
      * @return null
@@ -123,6 +146,5 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $user->setRoles(array('ROLE_ADMIN'));
         $this->userManager->updateUser($user, true);
         $this->setReference('teacher1', $user);
-
     }
 }
