@@ -286,7 +286,6 @@ file that was distributed with this source code.
                                                         {% endfor %}
                                                     </div>
                                                 {% endif %}
-
                                                 {% block sonata_admin_content_actions_wrappers %}
                                                     {% if _actions|replace({ '<li>': '', '</li>': '' })|trim is not empty %}
                                                         <ul class="nav navbar-nav navbar-right">
@@ -335,7 +334,13 @@ file that was distributed with this source code.
                             {% endif %}
 
                             {% if _form is not empty %}
-                                <div class="sonata-ba-form">{{ _form|raw }}</div>
+                                <div class="sonata-ba-form">
+                                    {{ _form|raw }}
+                                    {% if _title is not empty and 'Config' in _title %}
+                                        {{ _list_table|raw }}
+                                    {% endif %}
+
+                                </div>
                             {% endif %}
 
                             {% if _list_table is not empty or _list_filters is not empty %}
@@ -353,6 +358,7 @@ file that was distributed with this source code.
                         {% endblock sonata_admin_content %}
                     </section>
                 {% endblock sonata_page_content %}
+
             </div>
         {% endblock sonata_wrapper %}
     </div>

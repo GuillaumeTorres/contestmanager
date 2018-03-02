@@ -15,11 +15,11 @@ namespace CoreBundle\Admin;
 use CoreBundle\Entity\Config;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 /**
  * Class ConfigAdmin
@@ -55,9 +55,12 @@ class ConfigAdmin extends AbstractAdmin
         $formMapper
             ->add('roomNumber', NumberType::class)
             ->add('level_max', NumberType::class)
-            /*->add('time_interval', NumberType::class)
-            ->add('start_time', NumberType::class)*/;
-
+            ->add('roles', CollectionType::class, [
+                'allow_add' => true,
+                'allow_delete' => true,
+                'entry_type' => TextType::class,
+                'by_reference' => false,
+            ]);
     }
 
     /**
@@ -78,7 +81,6 @@ class ConfigAdmin extends AbstractAdmin
      *
      * @param RouteCollection $collection Route collection
      *
-     * @return null
      */
     protected function configureRoutes(RouteCollection $collection)
     {

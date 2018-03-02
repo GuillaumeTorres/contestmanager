@@ -28,7 +28,7 @@ class RestController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
 
         $schools = $entityManager->getRepository('SchoolBundle:School')->findAll();
-        
+
         return $schools;
     }
 

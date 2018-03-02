@@ -12,7 +12,6 @@
  */
 namespace CoreBundle\Admin;
 
-use CoreBundle\Entity\Config;
 use MatchBundle\Entity\GroupMatch;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -69,7 +68,7 @@ class GroupAdmin extends AbstractAdmin
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $roles = $user->getRoles();
         $entityManager = $this->getConfigurationPool()->getContainer()->get('doctrine')->getManager();
-        $config = $entityManager->getRepository('CoreBundle:Config')->findOneBy(array());
+        $config = $entityManager->getRepository('CoreBundle:Config')->findOneBy(array('id' => 1));
 
         $formMapper
             ->add('name', TextType::class)
