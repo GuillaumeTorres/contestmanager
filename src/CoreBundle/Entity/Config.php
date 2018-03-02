@@ -3,12 +3,17 @@
 namespace CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\SerializerBuilder;
+use JMS\Serializer\SerializationContext;
+
+
 
 /**
  * Config
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="CoreBundle\Entity\RoleRepository")
  */
 class Config
 {
@@ -19,7 +24,7 @@ class Config
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      *
-     * @SuppressWarnings(PHPMD)
+     * @SuppressWarnings(PHPMD.ShortVariable)
      */
     private $id;
 
@@ -44,53 +49,64 @@ class Config
      */
     private $level_max;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="CoreBundle\Entity\Role", cascade={"persist"})
+     */
+    private $roles;
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
 
     /**
-     * @var integer
+     * Add roles
      *
-     * @ORM\Column(name="time_interval", type="integer", nullable=true)
-     */
-    //private $time_interval;
-
-
-    /**
-     * @var integer
+     * @param \CoreBundle\Entity\Role $roles
      *
-     * @ORM\Column(name="start_time", type="integer", nullable=true)
+     * @return Role
      */
-    //private $start_time;
+    public function addRoles(\CoreBundle\Entity\Role $roles)
+    {
+        $this->roles[] = $roles;
+
+        return $this->roles;
+    }
 
     /**
-     * @return int
+     * Remove roles
+     *
+     * @param \CoreBundle\Entity\Role $roles
      */
-    /*public function getStartTime()
+    public function removeRoles(\CoreBundle\Entity\Role $roles)
     {
-        return $this->start_time;
-    }*/
+        $this->roles->removeElement($roles);
+    }
 
     /**
-     * @param int $start_time
+     * Get roles
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
-    /*public function setStartTime($start_time)
+    public function getRoles()
     {
-        $this->start_time = $start_time;
-    }*/
+        return $this->roles;
+    }
 
     /**
-     * @return int
+     * Set roles
+     *
+     * @param Role $roles
+     *
+     * @return Role
      */
-    /*public function getTimeInterval()
+    public function setRoles($roles)
     {
-        return $this->time_interval;
-    }*/
+        $this->roles = $roles;
 
-    /**
-     * @param int $time_interval
-     */
-    /*public function setTimeInterval($time_interval)
-    {
-        $this->time_interval = $time_interval;
-    }*/
+        return $this->roles;
+    }
 
     /**
      * @return int
@@ -166,5 +182,6 @@ class Config
     {
         return $this->name;
     }
+
 
 }

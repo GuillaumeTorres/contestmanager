@@ -152,4 +152,6 @@ class DefaultController extends Controller
         if (empty($config)) return $this->render('CoreBundle:Admin:standard_layout.html.twig', array('error' => 'Cette config n\'existe pas', 'config' => 'nop'));
         return new RedirectResponse('/config/'.$config->getId().'/edit');//$this->render('CoreBundle:Admin:standard_layout.html.twig', array('config' => $config));
     }
+
+
 }

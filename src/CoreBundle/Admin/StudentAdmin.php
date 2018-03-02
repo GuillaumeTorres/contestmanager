@@ -17,7 +17,6 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use UserBundle\Entity\User;
 
@@ -94,7 +93,7 @@ class StudentAdmin extends AbstractAdmin
             ->add('team')
             ->add('school')
             //->add('level')
-            ->add('role') //*
+            ->add('role')
         ;
     }
 
@@ -108,6 +107,6 @@ class StudentAdmin extends AbstractAdmin
             ->add('lastName', TextType::class)
             ->add('team')
             ->add('school')
-            ->add('role');  //*
+            ->add('role');
     }
 }

@@ -13,6 +13,7 @@
 namespace CoreBundle\DataFixtures\ORM;
 
 use CoreBundle\Entity\Config;
+use CoreBundle\Entity\Role;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -33,7 +34,7 @@ class LoadConfigData extends AbstractFixture
      *
      * @param ObjectManager $manager Object manager
      *
-     * @return null
+     * @throws \Doctrine\Common\DataFixtures\BadMethodCallException
      */
     public function load(ObjectManager $manager)
     {
@@ -41,9 +42,12 @@ class LoadConfigData extends AbstractFixture
         $config->setName('Configuration');
         $config->setRoomNumber(2);
         $config->setLevelMax(9);
-        //$config->setTimeInterval(10);
-        //$config->setStartTime(9);
-
+        for ($i = 1; $i <= 3; $i++) {
+            $role = new Role();
+            $role->setName('role_test_'.$i);
+            $config->addRoles($role);
+            $manager->persist($role);
+        }
         $manager->persist($config);
         $this->addReference('config', $config);
         $manager->flush();
