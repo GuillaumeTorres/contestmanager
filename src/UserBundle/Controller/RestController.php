@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use UserBundle\Entity\User;
 
 class RestController extends Controller
 {
@@ -59,17 +60,20 @@ class RestController extends Controller
         $username = $request->get('username');
         $password = $request->get('password');
 
+        /** @var User $user */
         $user = $this->get('fos_user.user_manager')->findUserBy(array('username' => $username));
         $encoder = $this->get('security.encoder_factory')->getEncoder($user);
         if (!$user || !$encoder->isPasswordValid($user->getPassword(), $password, $user->getSalt())) {
             return new JsonResponse('Invalid username/password', 401);
         }
+        $jsonUser = $user->jsonSerialize();
 
         $token = $this->get('lexik_jwt_authentication.encoder')->encode([
             'username' => $user->getUsername(),
         ]);
+        $jsonUser['token'] = $token;
 
-        return new JsonResponse($user->jsonSerialize(), 200, ['Authorization' => 'Bearer '.$token]);
+        return new JsonResponse($jsonUser, 200, ['Authorization' => 'Bearer '.$token]);
     }
     
     /**
