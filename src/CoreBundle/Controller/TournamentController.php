@@ -27,6 +27,7 @@ use Symfony\Component\HttpFoundation\Request;
  * @author   Guillaume <guillaume.torres91@gmail.com>
  * @license  All right reserved
  * @link     Null
+ * @SuppressWarnings(PHPMD)
  */
 class TournamentController extends Controller
 {

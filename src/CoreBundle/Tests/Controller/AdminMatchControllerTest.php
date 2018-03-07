@@ -58,15 +58,9 @@ class AdminMatchControllerTest extends BaseTest
             array(
                 $formId => array(
                   'dateMatch' => [
-                    /*'date' => [*/
-                        'day' => 23,
-                        'month' => 9,
-                        'year' => 2017
-                    /*],
-                    'time' => [
-                        'hour' => 23,
-                        'minute' => 23
-                    ]*/
+                    'day' => 23,
+                    'month' => 9,
+                    'year' => 2017,
                   ],
                   'tableNumber' => 23,
                   'team1' => 1,
@@ -78,7 +72,6 @@ class AdminMatchControllerTest extends BaseTest
         $crawler = $this->client->followRedirect();
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertContains('L\'élément "Match 2017-09-23" a été créé avec succès.', $crawler->filter('div.alert-success')->text());
-        /* 23:23:00*/
     }
 
     /**

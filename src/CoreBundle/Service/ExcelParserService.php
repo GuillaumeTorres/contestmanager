@@ -24,7 +24,7 @@ use UserBundle\Entity\User;
  */
 class ExcelParserService
 {
-    protected $em;
+    protected $entityManager;
     protected $phpExcel;
     protected $mailHost;
 
@@ -46,7 +46,7 @@ class ExcelParserService
      */
     public function __construct(EntityManager $entityManager, PHPExcel $phpExcel, $mailHost)
     {
-        $this->em = $entityManager;
+        $this->entityManager = $entityManager;
         $this->phpExcel = $phpExcel;
         $this->mailHost = $mailHost;
     }
@@ -70,7 +70,7 @@ class ExcelParserService
             ;
             $mappedCpt ++;
         }
-        $this->em->flush();
+        $this->entityManager->flush();
     }
 
     /**
@@ -194,7 +194,7 @@ class ExcelParserService
         $school = new School();
         $school->setName($name);
 
-        $this->em->persist($school);
+        $this->entityManager->persist($school);
 
         return $school;
     }
@@ -207,7 +207,7 @@ class ExcelParserService
     private function createTeacher($name)
     {
         $formatedTeacher = $this->formatName($name);
-        $teacher = $this->em->getRepository('UserBundle:User')->findOneBy(['username' => $formatedTeacher['username']]);
+        $teacher = $this->entityManager->getRepository('UserBundle:User')->findOneBy(['username' => $formatedTeacher['username']]);
 
         if ($teacher) return $teacher;
 
@@ -223,7 +223,7 @@ class ExcelParserService
         $teacher->setSchool($this->school);
         $teacher->setPlainPassword('teacher');
 
-        $this->em->persist($teacher);
+        $this->entityManager->persist($teacher);
 
         return $teacher;
     }
@@ -245,7 +245,7 @@ class ExcelParserService
         $group->setLevel($groupSheet->getCell('D'.$line)->getValue());
         $group->setTeacher($this->teacher);
 
-        $this->em->persist($group);
+        $this->entityManager->persist($group);
 
         return $group;
     }
@@ -261,7 +261,7 @@ class ExcelParserService
         $this->team->setName('Equipe '.$teamId);
         $this->team->setGroup($this->group);
 
-        $this->em->persist($this->team);
+        $this->entityManager->persist($this->team);
 
         return $this;
     }
@@ -273,7 +273,7 @@ class ExcelParserService
      */
     private function createStudent($lastName, $firstName, $roleName)
     {
-        $role = $this->em->getRepository('CoreBundle:Role')->findOneBy(['name' => $roleName]);
+        $role = $this->entityManager->getRepository('CoreBundle:Role')->findOneBy(['name' => $roleName]);
 
         $student = new Student();
         $student->setLastName($lastName);
@@ -282,6 +282,6 @@ class ExcelParserService
         $student->setSchool($this->school);
         $student->setTeam($this->team);
 
-        $this->em->persist($student);
+        $this->entityManager->persist($student);
     }
 }

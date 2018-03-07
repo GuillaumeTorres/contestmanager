@@ -43,27 +43,27 @@ class AdminSchoolControllerTest extends BaseTest
      *
      * @return null
      */
-//    public function testSchoolCreate()
-//    {
-//        $crawler = $this->client->request('GET', $this->getRouter()->generate('admin_user_user_create'));
-//        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-//
-//        $action = $crawler->filter('div.sonata-ba-form form')->attr('action');
-//        $formId = explode('=', $action)[1];
-//
-//        $form = $crawler->selectButton('btn_create_and_edit')->form();
-//        $form->setValues(
-//            array(
-//                $formId => array(
-//                  'name' => 'lorem ipsum'
-//                ),
-//            )
-//        );
-//        $this->client->submit($form);
-//        $crawler = $this->client->followRedirect();
-//        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-//        $this->assertContains('L\'élément "lorem ipsum" a été créé avec succès.', $crawler->filter('div.alert-success')->text());
-//    }
+    public function testSchoolCreate()
+    {
+        $crawler = $this->client->request('GET', $this->getRouter()->generate('admin_school_school_create'));
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+        $action = $crawler->filter('div.sonata-ba-form form')->attr('action');
+        $formId = explode('=', $action)[1];
+
+        $form = $crawler->selectButton('btn_create_and_edit')->form();
+        $form->setValues(
+            array(
+                $formId => array(
+                  'name' => 'lorem ipsum',
+                ),
+            )
+        );
+        $this->client->submit($form);
+        $crawler = $this->client->followRedirect();
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertContains('L\'élément "lorem ipsum" a été créé avec succès.', $crawler->filter('div.alert-success')->text());
+    }
 
     /**
      * Test school edition

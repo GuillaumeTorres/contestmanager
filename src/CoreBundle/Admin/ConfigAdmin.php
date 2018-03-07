@@ -43,7 +43,7 @@ class ConfigAdmin extends AbstractAdmin
     public function toString($object)
     {
         return $object instanceof Config
-            ? 'Config '.$object->getId()
+            ? 'Configuration'
             : 'Config';
     }
 
@@ -53,14 +53,8 @@ class ConfigAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('roomNumber', NumberType::class)
-            ->add('level_max', NumberType::class)
-            ->add('roles', CollectionType::class, [
-                'allow_add' => true,
-                'allow_delete' => true,
-                'entry_type' => TextType::class,
-                'by_reference' => false,
-            ]);
+            ->add('room_number', NumberType::class)
+            ->add('level_max', NumberType::class);
     }
 
     /**

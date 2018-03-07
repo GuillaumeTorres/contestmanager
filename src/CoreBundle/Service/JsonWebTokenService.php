@@ -23,18 +23,18 @@ use UserBundle\Entity\User;
 class JsonWebTokenService
 {
     private $jwtEncoder;
-    private $em;
+    private $entityManager;
 
     /**
      * JsonWebTokenService constructor.
      *
-     * @param JWTEncoderInterface $JWTEncoder
-     * @param EntityManager       $em
+     * @param JWTEncoderInterface $jwtEncoder
+     * @param EntityManager       $entityManager
      */
-    public function __construct(JWTEncoderInterface $JWTEncoder, EntityManager $em)
+    public function __construct(JWTEncoderInterface $jwtEncoder, EntityManager $entityManager)
     {
-        $this->jwtEncoder = $JWTEncoder;
-        $this->em = $em;
+        $this->jwtEncoder = $jwtEncoder;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -53,7 +53,7 @@ class JsonWebTokenService
         } catch (\Exception $e) {
             return null;
         }
-        $user = $this->em->getRepository('UserBundle:User')->findOneBy([
+        $user = $this->entityManager->getRepository('UserBundle:User')->findOneBy([
             'username' => $data['username'],
         ]);
 

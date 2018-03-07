@@ -151,8 +151,10 @@ class TournamentAdmin extends AbstractAdmin
     /**
      * Set random matchs
      *
-     * @param array $groups Groups
+     * @param array      $groups     Groups
      * @param Tournament $tournament Tournament
+     *
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     private function setRandomMatchs($groups, $tournament)
     {

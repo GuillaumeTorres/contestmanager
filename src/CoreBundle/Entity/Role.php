@@ -3,9 +3,6 @@
 namespace CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
-use JMS\Serializer\SerializerBuilder;
-use JMS\Serializer\SerializationContext;
 
 /**
  * Role
@@ -18,7 +15,7 @@ use JMS\Serializer\SerializationContext;
 class Role
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
