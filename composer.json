@@ -26,13 +26,13 @@
         "sonata-project/doctrine-orm-admin-bundle": "^3.1",
         "liuggio/excelbundle": "^2.1",
         "lexik/jwt-authentication-bundle": "^2.4",
+        "sensio/generator-bundle": "~2.3",
+        "doctrine/doctrine-fixtures-bundle": "^2.3",
+        "liip/functional-test-bundle": "^1.6",
         "nelmio/cors-bundle": "^1.5"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3",
-        "doctrine/doctrine-fixtures-bundle": "^2.3",
         "phpunit/phpunit": "^5.5",
-        "liip/functional-test-bundle": "^1.6",
         "codeclimate/php-test-reporter": "dev-master"
     },
     "scripts": {
