@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\MaxDepth;
-use TeamBundle\Entity\Team;
 
 /**
  * @ORM\Entity

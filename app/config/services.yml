@@ -69,7 +69,7 @@ services:
             phpExcel: "@phpexcel"
             hostMail: "%mail_host%"
     app.jwt.authentication:
-            class:  CoreBundle\Service\JsonWebTokenService
-            arguments:
-                jwtEncoder: "@lexik_jwt_authentication.encoder"
-                entityManager: "@doctrine.orm.entity_manager"
+        class:  CoreBundle\Service\JsonWebTokenService
+        arguments:
+            jwtEncoder: "@lexik_jwt_authentication.encoder"
+            entityManager: "@doctrine.orm.entity_manager"

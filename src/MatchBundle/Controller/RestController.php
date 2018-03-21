@@ -31,7 +31,7 @@ class RestController extends Controller
      * }
      * )
     */
-    public function matchsAction()  
+    public function matchsAction()
     {
         $entityManager = $this->getDoctrine()->getManager();
         $matchs = $entityManager->getRepository('MatchBundle:Versus')->findAll();
@@ -117,16 +117,15 @@ class RestController extends Controller
     }
     
     /**
-     * @Rest\Get("/matchs/{$idTeam}", requirements={"$idTeam" = "\d+"})
      * @ApiDoc(
      * section="Matchs",
      * description= "Get matchs by id",
      * requirements={
      *      {
-     *          "name"="idTeam",
+     *          "name"="id",
      *          "dataType"="integer",
      *          "requirement"="\d+",
-     *          "description"="Id Team"
+     *          "description"="Id Matchs"
      *      }
      *  },
      * statusCodes={
@@ -135,15 +134,15 @@ class RestController extends Controller
      * }
      * )
     */
-    public function idMatchsAction($idTeam)
+    public function getMatchAction($id)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $matchs = $entityManager->getRepository('MatchBundle:Versus')->findBy(array('id' => $idTeam));
-        if( empty($matchs) ){
+        $match = $entityManager->getRepository('MatchBundle:Versus')->findOneBy(array('id' => $id));
+        if( empty($match) ){
             return new JsonResponse('matchs not found', 404);
         }
         
-        return $matchs;
+        return $match;
     }
     
     /**

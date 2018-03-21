@@ -69,8 +69,8 @@ class ExcelParserService
                 ->getSetStudent($sheets['team'], $ids['team'])
             ;
             $mappedCpt ++;
+            $this->entityManager->flush();
         }
-        $this->entityManager->flush();
     }
 
     /**
@@ -120,6 +120,8 @@ class ExcelParserService
     /**
      * @param \PHPExcel_Worksheet $schoolSheet
      * @param integer             $schoolId
+     *
+     * @return $this
      */
     private function getSetSchool($schoolSheet, $schoolId)
     {
@@ -191,6 +193,10 @@ class ExcelParserService
      */
     private function createSchool($name)
     {
+        $school = $this->entityManager->getRepository('SchoolBundle:School')->findOneBy(['name' => $name]);
+
+        if ($school) return $school;
+
         $school = new School();
         $school->setName($name);
 
@@ -222,6 +228,8 @@ class ExcelParserService
         $teacher->setEmail($email);
         $teacher->setSchool($this->school);
         $teacher->setPlainPassword('teacher');
+        $teacher->setEnabled(true);
+        $teacher->setLocked(false);
 
         $this->entityManager->persist($teacher);
 
@@ -240,6 +248,10 @@ class ExcelParserService
             $groupSheet->getCell('C'.$line)->getValue().' - '.
             $this->teacher->getUsername();
 
+        $group = $this->entityManager->getRepository('MatchBundle:GroupMatch')->findOneBy(['name' => $groupName]);
+
+        if ($group) return $group;
+
         $group = new GroupMatch();
         $group->setName($groupName);
         $group->setLevel($groupSheet->getCell('D'.$line)->getValue());
@@ -257,8 +269,18 @@ class ExcelParserService
      */
     private function createTeam($teamId)
     {
+        $teamName = 'Equipe '.$teamId;
+
+        $team = $this->entityManager->getRepository('TeamBundle:Team')->findOneBy(['name' => $teamName]);
+
+        if ($team) {
+            $this->entityManager->persist($this->team);
+
+            return $this;
+        }
+
         $this->team = new Team();
-        $this->team->setName('Equipe '.$teamId);
+        $this->team->setName($teamName);
         $this->team->setGroup($this->group);
 
         $this->entityManager->persist($this->team);
