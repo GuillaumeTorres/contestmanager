@@ -196,10 +196,6 @@ class RestController extends Controller
     */
     public function scoreTeamMatchAction(Request $request)
     {
-        if (!$this->get('app.jwt.authentication')->getUser($request)) {
-            return new JsonResponse('Unauthorized', 401);
-        }
-
         $idTeam = $request->get('id_team');
         $idMatch = $request->get('id_match');
         $scoreV = $request->get('score');
